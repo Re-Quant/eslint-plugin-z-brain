@@ -1,0 +1,40 @@
+{
+  "name": "eslint-plugin-z-brain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "index.d.ts",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "clean": "rm -Rf ./dist/",
+    "build:ci": "npm run build",
+    "build": "npm run clean && mkdir ./dist && tsc --project tsconfig.build.json",
+    "test": "export NODE_OPTIONS=\"--max-old-space-size=8192\" && npx jest --runInBand --color --reporters=default --no-cache --coverage=false --silent=false"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@typescript-eslint/experimental-utils": "~5.3.1",
+    "@typescript-eslint/scope-manager": "~5.3.1",
+    "eslint-module-utils": "~2.7.1",
+    "reflect-metadata": "~0.1.13"
+  },
+  "devDependencies": {
+    "@types/eslint": "~7.28.2",
+    "@types/estree": "~0.0.50",
+    "@types/jest": "~27.0.2",
+    "@types/node": "~16.11.7",
+    "@typescript-eslint/eslint-plugin": "~5.3.1",
+    "@typescript-eslint/experimental-utils": "~5.3.1",
+    "@typescript-eslint/parser": "~5.3.1",
+    "eslint": "~8.2.0",
+    "jest": "~27.3.1",
+    "ts-jest": "~27.0.7",
+    "typescript": "~4.4.4"
+  }
+}
