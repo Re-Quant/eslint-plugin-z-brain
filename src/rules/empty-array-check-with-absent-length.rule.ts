@@ -51,22 +51,27 @@ export const rule = createRule({
             );
         }
 
+        function lintTestExpr(testExpr: TSESTree.Expression): void {
+            let targetExpr = testExpr;
+            if (nodeIsUnaryNegation(targetExpr)) targetExpr = targetExpr.argument; // handling !arr
+            if (nodeIsUnaryNegation(targetExpr)) targetExpr = targetExpr.argument; // handling !!arr
+
+            const isArray = nodeIsArrayType(targetExpr) || nodeIsTupleType(targetExpr);
+            if (!isArray) return;
+
+            context.report({
+                node: targetExpr,
+                messageId: 'absentLength'
+            });
+        }
+
         return {
             IfStatement(node: TSESTree.IfStatement) {
-                let condition = node.test;
-                if (nodeIsUnaryNegation(condition)) condition = condition.argument; // handling !arr
-                if (nodeIsUnaryNegation(condition)) condition = condition.argument; // handling !!arr
-
-                // if (!ASTUtils.isIdentifier(identifier)) return;
-
-                const isArray = nodeIsArrayType(condition) || nodeIsTupleType(condition);
-                if (!isArray) return;
-
-                context.report({
-                    node,
-                    messageId: 'absentLength'
-                });
-            }
+                lintTestExpr(node.test);
+            },
+            ConditionalExpression(node: TSESTree.ConditionalExpression) {
+                lintTestExpr(node.test);
+            },
         };
     }
 });
