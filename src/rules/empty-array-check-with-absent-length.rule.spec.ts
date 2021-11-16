@@ -61,6 +61,9 @@ describe('Fuck', () => {
       // { code: `class Foo { ids: [number, string];          bar() { if (this.ids) return; } }`, errors: [ { messageId: 'absentLength' } ] },
       // { code: `class Foo { ids: readonly [number, string]; bar() { if (this.ids) return; } }`, errors: [ { messageId: 'absentLength' } ] },
 
+      { code: `function foo(ids?: number[] | null | undefined) { if (ids!) return; }`, errors: [ { messageId: 'absentLength' } ] },
+      //                                                               ^^^
+
       { code: `function foo(data?: { ids?: number[]; }) { if ( !data!.ids!) return; }`, errors: [ { messageId: 'absentLength' } ] },
       { code: `function foo(data?: { ids?: number[]; }) { if (!!data!.ids!) return; }`, errors: [ { messageId: 'absentLength' } ] },
       { code: `function foo(ids: number[]) { if ( !ids) return; }`, errors: [ { messageId: 'absentLength' } ] },
