@@ -40,7 +40,8 @@ describe('Fuck', () => {
       // { code: `function foo(ids: number[] | number)            { if (ids) return; }`, },
       // { code: `function foo(ids: number[] | string)            { if (ids) return; }`, },
 
-      { code: `function foo(ids: Array<number>)             { if (!ids.length) return; }` },
+      { code: `function foo(ids: Array<number>)             { if ( !ids.length) return; }` },
+      { code: `function foo(ids: Array<number>)             { if (!!ids.length) return; }` },
     ],
     invalid: [
       // { code: `function foo(ids: Array<number>)             { if (ids) return; }`, errors: [ { messageId: 'absentLength' } ] },
@@ -57,7 +58,8 @@ describe('Fuck', () => {
       // { code: `class Foo { ids: [number, string];          bar() { if (this.ids) return; } }`, errors: [ { messageId: 'absentLength' } ] },
       // { code: `class Foo { ids: readonly [number, string]; bar() { if (this.ids) return; } }`, errors: [ { messageId: 'absentLength' } ] },
 
-      { code: `function foo(ids: Array<number>)             { if (!ids) return; }`, errors: [ { messageId: 'absentLength' } ] },
+      { code: `function foo(ids: Array<number>)             { if ( !ids) return; }`, errors: [ { messageId: 'absentLength' } ] },
+      { code: `function foo(ids: Array<number>)             { if (!!ids) return; }`, errors: [ { messageId: 'absentLength' } ] },
     ],
   });
 });

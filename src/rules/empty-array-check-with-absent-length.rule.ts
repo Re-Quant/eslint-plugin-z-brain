@@ -1,4 +1,4 @@
-import { ESLintUtils, TSESTree } from '@typescript-eslint/experimental-utils';
+import { AST_NODE_TYPES, ESLintUtils, TSESTree } from '@typescript-eslint/experimental-utils';
 // import * as tsutils from 'tsutils';
 import * as ts from 'typescript';
 
@@ -37,17 +37,29 @@ export const rule = createRule({
             const nodeType = getNodeType(node);
             return checker.isArrayType(nodeType);
         }
+
         function nodeIsTupleType(node: TSESTree.Expression): boolean {
             const nodeType = getNodeType(node);
             return checker.isTupleType(nodeType);
         }
 
+        function nodeIsUnaryNegation(node: TSESTree.Node): node is TSESTree.UnaryExpression {
+            return (
+              node.type === AST_NODE_TYPES.UnaryExpression &&
+              node.prefix &&
+              node.operator === '!'
+            );
+        }
+
         return {
             IfStatement(node: TSESTree.IfStatement) {
-                const identifier = node.test;
+                let condition = node.test;
+                if (nodeIsUnaryNegation(condition)) condition = condition.argument; // handling !arr
+                if (nodeIsUnaryNegation(condition)) condition = condition.argument; // handling !!arr
+
                 // if (!ASTUtils.isIdentifier(identifier)) return;
 
-                const isArray = nodeIsArrayType(identifier) || nodeIsTupleType(identifier);
+                const isArray = nodeIsArrayType(condition) || nodeIsTupleType(condition);
                 if (!isArray) return;
 
                 context.report({
