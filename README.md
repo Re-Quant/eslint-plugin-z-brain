@@ -8,7 +8,7 @@
     <img alt="NPM version" src="https://img.shields.io/npm/v/@z-brain/eslint-plugin-z-brain.svg">
   </a>
   <a target="_blank" href="https://codecov.io/gh/z-brain/eslint-plugin-z-brain">
-    <img alt="Code Coverage" src="https://codecov.io/gh/z-brain/eslint-plugin-z-brain/branch/master/graph/badge.svg">
+    <img alt="Code Coverage" src="https://codecov.io/gh/z-brain/eslint-plugin-z-brain/branch/main/graph/badge.svg">
   </a>
   <a target="_blank" href="https://www.gnu.org/licenses/gpl-3.0">
     <img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg">
@@ -135,11 +135,9 @@ Notice: _linter isn't configured yet_
 CI configuration details here: [.github/workflows/npmpublish.yml](.github/workflows/npmpublish.yml)
 
 ```bash
-npm run pre-push \
+yarn run ci \
 && npm version patch -m 'Update package version version to %s' \
-&& npm run gen-public-package.json \
-&& cp README.md dist/ \
-&& npm publish dist --access public \
+&& npm publish --access public \
 && git push --no-verify && git push --tags --no-verify
 ```
 
