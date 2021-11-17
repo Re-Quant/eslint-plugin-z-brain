@@ -1,6 +1,6 @@
 {
   "name": "@z-brain/eslint-plugin-z-brain",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "author": "Anton Korniychuk <dev@korniychuk.pro>",
   "license": "GPL-3.0",
   "private": false,
@@ -32,7 +32,11 @@
     "test:ci": "export NODE_OPTIONS=\"--max-old-space-size=8192\" && npx jest --runInBand --reporters=default --no-cache --silent=false",
     "ci": "yarn run test:ci"
   },
-  "keywords": ["ESLint", "Z-Brain", "Empty Array Check"],
+  "keywords": [
+    "ESLint",
+    "Z-Brain",
+    "Empty Array Check"
+  ],
   "dependencies": {
     "@typescript-eslint/experimental-utils": "~5.3.1",
     "@typescript-eslint/scope-manager": "~5.3.1",
