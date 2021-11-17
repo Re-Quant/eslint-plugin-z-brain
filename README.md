@@ -27,6 +27,36 @@ Custom ESLint (TypeScript) rules that are being used in Z-Brain projects. Some o
 or  
 `npm i -s @z-brain/eslint-plugin-z-brain`
 
+### Adding to `.eslintrc`
+
+The plugin import and adding the recommended rule set.
+
+```ts
+module.exports = {
+    env: {
+        es6: true,
+    },
+    extends: ["plugin:@z-brain/z-brain/recommended"],
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+        project: ["./tsconfig.json"],
+        sourceType: "module",
+        ecmaVersion: "es2019",
+    },
+    plugins: ["@z-brain/z-brain"],
+};
+```
+
+**Configuring specific rules:**
+
+```js
+module.exports = {
+  rules: {
+    '@z-brain/z-brain/empty-array-check-with-absent-length': 'warn',
+  },
+};
+```
+
 ## Rules
 
 ### `empty-array-check-with-absent-length`

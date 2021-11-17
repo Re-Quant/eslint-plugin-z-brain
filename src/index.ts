@@ -1,5 +1,2 @@
-import { rules } from './rules';
-
-module.exports = {
-    rules,
-};
+export { rules } from './rules';
+export { configs } from './configs';
