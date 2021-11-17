@@ -42,7 +42,7 @@ Add `.length` or if you're writing a check for a falsy-value please add an appro
 
 #### Examples
 
-See all cases & examples in the [unit tests](./blob/master/src/rules/empty-array-check-with-absent-length.rule.spec.ts).
+See all cases & examples in the [unit tests](./src/rules/empty-array-check-with-absent-length.rule.spec.ts).
 
 ```ts
 function foo(ids: number[]) {
