@@ -1,6 +1,6 @@
 {
   "name": "@z-brain/eslint-plugin-z-brain",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Anton Korniychuk <dev@korniychuk.pro>",
   "license": "GPL-3.0",
   "private": false,
