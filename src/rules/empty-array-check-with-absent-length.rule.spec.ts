@@ -50,6 +50,12 @@ describe('Fuck', () => {
       { code: `function foo(ids: number[])  { const n =  ids.length ? 1 : 2; }` },
       { code: `function foo(ids?: number[]) { const n =  ids        ? 1 : 2; }` },
       { code: `function foo(ids: number[])  { const n = !ids.length ? 1 : 2; }` },
+
+      // Functions/Methods support
+      { code: `class Foo { getIds(): number[]             { return [] }; bar() { if (this.getIds().length) return; } }` },
+      { code: `class Foo { getIds(): number[] | null      { return [] }; bar() { if (this.getIds()) return; } }` },
+      { code: `class Foo { getIds(): number[] | undefined { return [] }; bar() { if (this.getIds()) return; } }` },
+      { code: `class Foo { getId(): number                { return [] }; bar() { if (this.getId()) return; } }` },
     ],
     invalid: [
       // check support of any possible arrays
@@ -81,6 +87,10 @@ describe('Fuck', () => {
       { code: `function foo(ids: number[])  { const n =  ids  ? 1 : 2; }`, errors: [ { messageId: 'absentLength' } ] },
       { code: `function foo(ids?: number[]) { const n =  ids! ? 1 : 2; }`, errors: [ { messageId: 'absentLength' } ] },
       { code: `function foo(ids: number[])  { const n = !ids  ? 1 : 2; }`, errors: [ { messageId: 'absentLength' } ] },
+
+      // Functions/Methods support
+      { code: `class Foo { getIds(): number[]             { return [] }; bar() { if (this.getIds()) return; } }`, errors: [ { messageId: 'absentLength' } ]  },
+      { code: `class Foo { getIds(): number[] | undefined { return [] }; bar() { if (this.getIds()!) return; } }`, errors: [ { messageId: 'absentLength' } ]  },
     ],
   });
 });
