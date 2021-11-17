@@ -15,7 +15,7 @@
   </a>
 </p>
 
-Custom ESLint rules that are being used in Z-Brain projects. Some of them are project-specific, some are helpful anywhere.
+Custom ESLint (TypeScript) rules that are being used in Z-Brain projects. Some of them are project-specific, some are helpful anywhere.
 
 *Notice: If you have any propositions feel free to make an issue or create a pull request.*
 
@@ -85,7 +85,7 @@ function foo(ids: number[]) {
 - [Description of all packages in @typescript-eslint · GitHub](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/development/architecture/PACKAGES.md)
 - [Using the Compiler API · microsoft/TypeScript Wiki · GitHub](https://github.com/microsoft/TypeScript/wiki/Using-the-Compiler-API#using-the-type-checker)
 - [More about type checking via TS Compiler API](https://learning-notes.mistermicheels.com/javascript/typescript/compiler-api/#getting-type-information)
-- 
+
 ## Development notes
 
 ### Quick Start

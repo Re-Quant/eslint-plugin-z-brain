@@ -11,9 +11,10 @@ module.exports = {
     silent: false,
     verbose: true,
     collectCoverageFrom: [
-        "**/src/**/*.ts",
+        "src/**/*.ts",
         "!**/node_modules/**",
         "!**/*.test.data.ts",
+        "!**/index.ts",
     ],
     coverageThreshold: {
         global: {

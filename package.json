@@ -4,7 +4,7 @@
   "author": "Anton Korniychuk <dev@korniychuk.pro>",
   "license": "GPL-3.0",
   "private": false,
-  "description": "Custom ESLint rules that are being used in Z-Brain projects. Some of them are project-specific, some are helpful anywhere.",
+  "description": "Custom ESLint (TypeScript) rules that are being used in Z-Brain projects. Some of them are project-specific, some are helpful anywhere.",
   "main": "dist/index.js",
   "types": "index.d.ts",
   "bugs": {
@@ -21,14 +21,16 @@
     "README.md"
   ],
   "engines": {
-    "node": "^14.0.0",
-    "yarn": "^1.15.0"
+    "node": ">=14.0.0",
+    "yarn": ">=1.15.0"
   },
   "scripts": {
     "clean": "rm -Rf ./dist/",
-    "build:ci": "npm run build",
-    "build": "npm run clean && mkdir ./dist && tsc --project tsconfig.build.json",
-    "test": "export NODE_OPTIONS=\"--max-old-space-size=8192\" && npx jest --runInBand --color --reporters=default --no-cache --coverage=false --silent=false"
+    "build:ci": "yarn run build",
+    "build": "yarn run clean && mkdir ./dist && tsc --project tsconfig.build.json",
+    "test": "export NODE_OPTIONS=\"--max-old-space-size=8192\" && npx jest --runInBand --color --reporters=default --no-cache --coverage=false --silent=false",
+    "test:ci": "export NODE_OPTIONS=\"--max-old-space-size=8192\" && npx jest --runInBand --reporters=default --no-cache --silent=false",
+    "ci": "yarn run test:ci"
   },
   "keywords": ["ESLint", "Z-Brain", "Empty Array Check"],
   "dependencies": {
