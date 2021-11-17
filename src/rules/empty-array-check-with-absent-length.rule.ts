@@ -1,5 +1,4 @@
 import { AST_NODE_TYPES, ESLintUtils, TSESTree } from '@typescript-eslint/experimental-utils';
-// import * as tsutils from 'tsutils';
 import * as ts from 'typescript';
 
 import { createRule, getConstrainedTypeAtLocation } from '../utils';
@@ -13,11 +12,12 @@ export const rule = createRule({
     meta: {
         type: 'problem',
         docs: {
-            description: '',
-            recommended: 'error'
+            description: 'Protects against forgotten \'.length\' when checking an array for emptiness',
+            recommended: 'error',
+            requiresTypeChecking: true,
         },
         messages: {
-            absentLength: 'This is array!!!',
+            absentLength: 'Wrong array emptiness check (or wrong typings).',
         },
         schema: [],
     },
@@ -77,25 +77,3 @@ export const rule = createRule({
 });
 
 export const emptyArrayCheckWithAbsentLengthRuleProvider = { [RULE_NAME]: rule };
-
-// checker.getApparentType(originalNode)
-// checker.symbolToString(nodeType.symbol)
-// checker.symbolToString(nodeType.types[1].getSymbol())
-// checker.getContextualType(originalNode)
-// nodeType.types[1].getSymbol().getDeclarations().map(v => v.getText())
-
-// tsutils.isUnionType(nodeType)
-
-// identifier
-// originalNode
-// originalNode
-// nodeType
-
-// get flags
-/*
-Object.values(ts.TypeFlags)
-      .filter(v => typeof v === 'number')
-      .filter(v => tsutils.isTypeFlagSet(originalNode, v))
-      .map(v => ts.TypeFlags[v])
-
-*/
